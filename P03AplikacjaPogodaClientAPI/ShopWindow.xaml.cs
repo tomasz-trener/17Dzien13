@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using P03AplikacjaPogodaClientAPI.Models.CityModel;
-
+using P03AplikacjaPogodaClientAPI.ViewModels.ProductViewModel;
 using P05Sklep.Shared;
 using System;
 using System.Collections.Generic;
@@ -28,6 +28,7 @@ namespace P03AplikacjaPogodaClientAPI
         public ShopWindow()
         {
             InitializeComponent();
+            shopPanel.DataContext = new ProdcutWindowVM();
         }
 
         private async void btnShopApiTest_Click(object sender, RoutedEventArgs e)
