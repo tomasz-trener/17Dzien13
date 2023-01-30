@@ -26,6 +26,11 @@ namespace P03AplikacjaPogodaClientAPI
         {
             InitializeComponent();
         }
+
+        public static void ShowText(string text)
+        {
+            MessageBox.Show(text);
+        }
        
     }
 }
