@@ -2,7 +2,7 @@
 
 namespace P04Sklep.API.Services.ProductService
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         public async Task<ServiceReponse<Product[]>> GetProductAsync()
         {

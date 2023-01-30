@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using P04Sklep.API.Services.ProductService;
 using P05Sklep.Shared;
 
 namespace P04Sklep.API.Controllers
@@ -7,10 +8,22 @@ namespace P04Sklep.API.Controllers
     [ApiController]
     public class ProductController : Controller
     {
+
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+
         [HttpGet]
         public async Task<ActionResult<ServiceReponse<Product[]>>> GetProducts()
         {
-            throw new NotImplementedException();
+            var result = await _productService.GetProductAsync();
+            return Ok(result);
+          //  ProductService productService = new ProductService();
         }
+
     }
 }
