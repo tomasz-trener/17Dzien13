@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using P03AplikacjaPogodaClientAPI.Models.CityModel;
 using P05Sklep.Shared;
 using System;
@@ -29,13 +30,25 @@ namespace P03AplikacjaPogodaClientAPI.Tools
 
         public async Task<Product[]> GetProducts()
         {
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    client.BaseAddress = new Uri(_baseURl);
+            //    var result = await client.GetFromJsonAsync <ServiceReponse<Product[]>>("api/product");
+
+            //    return result.Data;
+            //}
+
+
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_baseURl);
-                var result = await client.GetFromJsonAsync <ServiceReponse<Product[]>>("api/product");
+                var response = await client.GetAsync(_baseURl + "/api/product");
+                string json = await response.Content.ReadAsStringAsync();
+
+                var result = JsonConvert.DeserializeObject<ServiceReponse<Product[]>>(json);
 
                 return result.Data;
             }
+
         }
-}
+    }
 }
