@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace P03AplikacjaPogodaClientAPI.ViewModels
 {
-    public class WeatherVM : INotifyPropertyChanged
+    public class WeatherVM : ViewModelBase 
     {
 		private string city = "warszawa";
 		AccuWeatherTool accuWeatherTool;
@@ -22,7 +22,8 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 			get { return city; }
 			set { 
 				city = value;
-                OnPropertyChange("City");
+				OnPropertyChange();
+               // OnPropertyChange("City");
             }
 		}
 
@@ -43,13 +44,7 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 
 		private CurrentConditionsOfCity currentConditionsOfCity;
 
-		public event PropertyChangedEventHandler? PropertyChanged;
-
-
-		private void OnPropertyChange(string propertyName)
-		{
-            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
-        }
+		
 
 		public CurrentConditionsOfCity CurrentConditionsOfCity
         {
@@ -69,19 +64,23 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 			accuWeatherTool = new AccuWeatherTool();
 			Cities = new ObservableCollection<CityVM>();
 
-			MouseEnterCommand = new DelegateCommand(mouseEnter,null);
+			//MouseEnterCommand = new DelegateCommand(mouseEnter,null);
 
-        
+			MouseEnterCommand = new DelegateCommand(() =>
+			{
+				// ciało funkcji anonimowej, ktorą przekazujemy jako delegat do DelegateCommand
+				MainWindow.ShowText("mouse enter");
+			}, null);
         }
 
 		public SearchCommand SearchCommand { get; set; }
 		public DelegateCommand MouseEnterCommand { get; set; }
 
 
-		private	void mouseEnter()
-		{
-			MainWindow.ShowText("mouse enter");
-		}
+		//private	void mouseEnter()
+		//{
+		//	MainWindow.ShowText("mouse enter");
+		//}
 
 
         public async void FindCities()
