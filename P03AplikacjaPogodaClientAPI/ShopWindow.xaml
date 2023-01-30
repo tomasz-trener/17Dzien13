@@ -8,5 +8,6 @@
         Title="ShopWindow" Height="450" Width="800">
     <StackPanel>
         <Button Content="Api test" x:Name="btnShopApiTest" Click="btnShopApiTest_Click"></Button>
+        <ListView></ListView>
     </StackPanel>
 </Window>
