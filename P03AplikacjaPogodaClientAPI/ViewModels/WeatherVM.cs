@@ -71,16 +71,21 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 				// ciało funkcji anonimowej, ktorą przekazujemy jako delegat do DelegateCommand
 				MainWindow.ShowText("mouse enter");
 			}, null);
+
+            GoToShopCommand = new DelegateCommand(() =>
+            {
+				MainWindow.ShowShopWindow();
+            }, null);
         }
 
 		public SearchCommand SearchCommand { get; set; }
 		public DelegateCommand MouseEnterCommand { get; set; }
+        public DelegateCommand GoToShopCommand { get; set; }
 
-
-		//private	void mouseEnter()
-		//{
-		//	MainWindow.ShowText("mouse enter");
-		//}
+        //private	void mouseEnter()
+        //{
+        //	MainWindow.ShowText("mouse enter");
+        //}
 
 
         public async void FindCities()

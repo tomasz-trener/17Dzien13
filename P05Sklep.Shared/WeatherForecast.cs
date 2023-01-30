@@ -1,4 +1,4 @@
-namespace P04Sklep.API;
+namespace P05Sklep.Shared;
 
 public class WeatherForecast
 {
